@@ -16,6 +16,9 @@ const db = createClient({
     authToken: process.env.DB_TOKEN
 });
 
+
+
+
 await db.execute(
     `CREATE TABLE IF NOT EXISTS messages (
         id INTEGER PRIMARY KEY AUTOINCREMENT, 
@@ -23,6 +26,8 @@ await db.execute(
         user TEXT
     )`
 );
+
+
 
 const app = express();
 const server = createServer(app);
@@ -75,6 +80,6 @@ app.get('/', (req, res)=>{
     res.sendFile(process.cwd() + '/client/index.html')
 });
 
-server.listen(port, ()=>{
+server.listen(port, '0.0.0.0', ()=>{
     console.log(`server corriendo en : ${port}`)
 })
